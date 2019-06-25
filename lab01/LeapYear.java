@@ -1,6 +1,6 @@
 /**
  * Class that determines whether or not a year is a leap year.
- * @author YOUR NAME HERE
+ * @author Fernanda Ramos
  */
 public class LeapYear {
 
@@ -28,4 +28,17 @@ public class LeapYear {
             }
         }
     }
+    /**
+    * returns a boolean whether the integer given is equivalent to a leap year or not.
+    * @source CS 61BL Lab 1
+    */
+    public static boolean isLeapYear(int year) {
+        if ((year % 400 == 0) || (year % 4 == 0 && year % 100 != 0)){
+            return true
+        }
+        else {
+            return false
+        }
+    }
 }
+

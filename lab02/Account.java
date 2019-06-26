@@ -64,7 +64,7 @@ public class Account {
         // TODO
         int amount = this.balance; 
         other.withdraw(amount);
-        deposit(amount);
+        this.deposit(amount);
 
 
     }

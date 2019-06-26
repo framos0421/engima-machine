@@ -6,7 +6,6 @@ public class Account {
 
     public int balance;
     public int remainder;
-    public Account parentAccount = new Account();
 
     /** Initialize an account with the given balance. */
     public Account(int balance) {
@@ -14,6 +13,8 @@ public class Account {
         this.parentAccount = null;
         this.remainder = remainder;
     }
+
+    public Account parentAccount = new Account();
 
     public Account(int balance, Account parentAccount) {
         this.balance = balance;

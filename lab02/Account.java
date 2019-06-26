@@ -16,6 +16,7 @@ public class Account {
     public Account(int balance, Account parentAccount) {
         this.balance = balance;
         this.parentAccount = parentAccount;
+        this.remainder = remainder;
     }
 
     /** Deposits amount into the current account. */

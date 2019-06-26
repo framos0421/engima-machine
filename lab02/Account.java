@@ -5,7 +5,7 @@
 public class Account {
 
     public int balance;
-    public Account parentAccount = new(Account)
+    public Account parentAccount = new Account();
 
     /** Initialize an account with the given balance. */
     public Account(int balance) {
@@ -15,7 +15,7 @@ public class Account {
 
     public Account(int balance, Account parentAccount) {
         this.balance = balance;
-        this.parentAccount = parentAccount
+        this.parentAccount = parentAccount;
     }
 
     /** Deposits amount into the current account. */
@@ -42,7 +42,7 @@ public class Account {
             return false; 
         } else if(balance < amount && this.parentAccount != null){
             public int remainder = amount - balance;
-            parentAccount.withdraw(remainder);
+            parentAccount.withdraw(int remainder);
             this.balance = 0;
             return true; 
         } else if (amount > (this.balance + parentAccount.balance)){

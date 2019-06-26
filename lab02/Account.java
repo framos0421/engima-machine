@@ -5,18 +5,18 @@
 public class Account {
 
     public int balance;
-    
+    public Account parentAccount = new Account();
 
     /** Initialize an account with the given balance. */
     public Account(int balance) {
         this.balance = balance;
         this.parentAccount = null;
+        this.remainder = remainder;
     }
 
     public Account(int balance, Account parentAccount) {
         this.balance = balance;
         this.parentAccount = parentAccount;
-        this.remainder = remainder;
     }
 
     /** Deposits amount into the current account. */

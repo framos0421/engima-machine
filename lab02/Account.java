@@ -70,7 +70,7 @@ public class Account {
      */
     public void merge(Account other) {
         // TODO
-        int amount = this.balance; 
+        int amount = other.balance; 
         other.withdraw(amount);
         this.deposit(amount);
 

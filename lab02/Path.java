@@ -11,7 +11,7 @@ public class Path {
     }
 
     public double getCurrY(){
-    	return currPointY();
+    	return currPoint.getY();
     }
 
     public double getNextX(){

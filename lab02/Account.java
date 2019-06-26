@@ -62,7 +62,6 @@ public class Account {
             return true;
         }
         }
-    }
 
     /**
      * Merge account other into this account by removing all money from other

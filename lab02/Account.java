@@ -62,9 +62,9 @@ public class Account {
      */
     public void merge(Account other) {
         // TODO
-        int amount = other.balance; 
-        this.deposit(amount);
+        int amount = this.balance; 
         other.withdraw(amount);
+        deposit(amount);
 
 
     }

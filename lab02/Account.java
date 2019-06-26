@@ -43,7 +43,7 @@ public class Account {
             return false; 
         } else if(balance < amount && this.parentAccount != null){
             remainder = amount - balance;
-            parentAccount.withdraw(int remainder);
+            parentAccount.withdraw(this.remainder);
             balance = 0;
             return true; 
         } else if (amount > (balance + parentAccount.balance)){

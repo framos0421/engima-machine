@@ -56,6 +56,7 @@ public class Account {
                 return false; 
             }
         }
+    }
         else{
             balance -= amount;
             return true;

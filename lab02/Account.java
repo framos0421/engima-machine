@@ -41,7 +41,7 @@ public class Account {
             System.out.println("Insufficient funds");
             return false; 
         } else if(balance < amount && this.parentAccount != null){
-            private int remainder = amount - balance;
+            remainder = amount - balance;
             parentAccount.withdraw(int remainder);
             balance = 0;
             return true; 

@@ -8,7 +8,7 @@ public class SieveOfEratosthenes {
                     "and provide a number in the `Program arguments` box.");
             return;
         }
-		int upperBound = args[0];
+		int upperBound = 0;
 		boolean[] isNotPrime = new boolean[upperBound];
 		for (int i = 0; i <= upperBound; i++) {
 			if (isNotPrime[i] == true) {

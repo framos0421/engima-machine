@@ -13,9 +13,12 @@ class Permutation {
      *  is interpreted as a permutation in cycle notation.  Characters in the
      *  alphabet that are not included in any cycle map to themselves.
      *  Whitespace is ignored. */
+    private Alphabet alphabet; 
+    private String cycles;
+
     Permutation(String cycles, Alphabet alphabet) {
-        _alphabet = alphabet;
-        cycles = cycles.re
+        this.alphabet = alphabet;
+        this.cycles = cycles;
         // FIXME - Assign any additional instance variables.
     }
 
@@ -30,7 +33,7 @@ class Permutation {
 
     /** Returns the size of the alphabet I permute. */
     public int size() {
-        return _alphabet.length();
+        return this.alphabet.size();
          // FIXME - How do we ask the alphabet for its size?
     }
 
@@ -52,7 +55,7 @@ class Permutation {
      * of character P in ALPHABET. */
     public char permute(char p) {
     	// NOTE: it might be beneficial to have one permute() method always call the other
-        return 0;  // FIXME - How do we use our instance variables to get the character that P permutes to?
+        return this.cycles.charAt(this.cycles.indexOf(p) + 1);  // FIXME - How do we use our instance variables to get the character that P permutes to?
     }
 
     /** Return the character result of applying the inverse of this permutation
@@ -68,7 +71,6 @@ class Permutation {
     }
 
     /** Alphabet of this permutation. */
-    private Alphabet _alphabet;
 
     // FIXME - How do we store which letter permutes/inverts to which?
 

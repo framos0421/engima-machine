@@ -10,10 +10,17 @@ public class AddingMachine {
 		int subtotal = 0;
 		int input;
 		int MAXIMUM_NUMBER_OF_INPUTS = 100;
+<<<<<<< HEAD
 		int[] listOfInputs = new int[MAXIMUM_NUMBER_OF_INPUTS];
 		int index = 0;
 
 		// TODO Add code anywhere below to complete AddingMachine
+=======
+        int[] listOfInputs = new int[MAXIMUM_NUMBER_OF_INPUTS];
+        int index = 0;
+
+        // TODO Add code anywhere below to complete AddingMachine
+>>>>>>> 43ea2f46b4ca435c2dd816136bc9946bee998f18
 		while (true) {
 			input = scanner.nextInt();
 			if (input == 0) {
@@ -36,4 +43,7 @@ public class AddingMachine {
 	}
 
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> 43ea2f46b4ca435c2dd816136bc9946bee998f18

@@ -8,10 +8,14 @@ public class ArrayOperations {
         if (pos < 0 || pos >= values.length) {
             return;
         }
+<<<<<<< HEAD
         for (int i = pos; i < values.length - 1; i += 1){
             values[i] = values[i + 1];
         }
         values[values.length - 1] = 0;
+=======
+        // TODO: YOUR CODE HERE
+>>>>>>> 43ea2f46b4ca435c2dd816136bc9946bee998f18
     }
 
     /**
@@ -23,9 +27,13 @@ public class ArrayOperations {
         if (pos < 0 || pos >= values.length) {
             return;
         }
+<<<<<<< HEAD
         for (int i = values.length - 1; i > pos ; i -= 1){
             values[i] = values[i - 1];
         }
         values[pos] = newInt;
+=======
+        // TODO: YOUR CODE HERE
+>>>>>>> 43ea2f46b4ca435c2dd816136bc9946bee998f18
     }
 }

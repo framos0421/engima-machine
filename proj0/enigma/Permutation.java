@@ -7,8 +7,7 @@ import static enigma.EnigmaException.*;
  *  @author
  */
 public class Permutation {
-
-<<<<<<<HEAD
+    
     /**
      * Set this Permutation to that specified by CYCLES, a string in the
      * form "(cccc) (cc) ..." where the c's are characters in ALPHABET, which
@@ -29,7 +28,6 @@ public class Permutation {
      * Return the value of P modulo the size of this permutation.
      */
     private final int wrap(int p) {
-=======
         /** Set this Permutation to that specified by CYCLES, a string in the
          *  form "(cccc) (cc) ..." where the c's are characters in ALPHABET, which
          *  is interpreted as a permutation in cycle notation.  Characters in the
@@ -42,7 +40,6 @@ public class Permutation {
 
         /** Return the value of P modulo the size of this permutation. */
         final int wrap ( int p){
->>>>>>>43e a2f46b4ca435c2dd816136bc9946bee998f18
             int r = p % size();
             if (r < 0) {
                 r += size();
@@ -142,4 +139,3 @@ public class Permutation {
         System.out.println(perm.permute(0) == 1);
         System.out.println(perm.invert(1) == 0);
     }
-

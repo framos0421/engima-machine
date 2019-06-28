@@ -14,5 +14,7 @@ public class Main {
         System.out.println(f.weight);
 
         /** Worksheet: Fish and Salmon 1.2 Code below */
+        Fish fs = new Salmon(); //Line A
+        makeSecondDinner(fs);   //Line B
     }
 }

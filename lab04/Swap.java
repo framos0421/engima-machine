@@ -11,12 +11,12 @@ public class Swap {
                 int temporary = arr[start_index];
                 arr[start_index] = arr[start_index + 1];
                 arr[start_index + 1] = temporary;
-                //this.counter = counter;
+                this.counter = counter;
                 //counter = counter + 1;
                 //counter2 = counter2 + 2;
                 //counter3 = counter3 + 1;
             }
-            this.counter = counter;
+            
             start_index = start_index + 1;
         }
         System.out.println("Swapped " + this.counter + " times.");

@@ -16,7 +16,7 @@ public class Swap {
                 //counter2 = counter2 + 2;
                 //counter3 = counter3 + 1;
             }
-            this.counter = counter
+            this.counter = counter;
             start_index = start_index + 1;
         }
         System.out.println("Swapped " + this.counter + " times.");

@@ -7,17 +7,18 @@ public class Swap {
         while (start_index < arr.length - 1) {
             int counter = 0;
             if (arr[start_index] > arr[start_index + 1]) {
+                counter + counter + 1
                 int temporary = arr[start_index];
                 arr[start_index] = arr[start_index + 1];
                 arr[start_index + 1] = temporary;
                 //counter = counter + 1;
-                counter2 = counter2 + 2;
+                //counter2 = counter2 + 2;
                 //counter3 = counter3 + 1;
             }
             start_index = start_index + 1;
         }
         System.out.println("Swapped " + counter + " times.");
-        return counter2;
+        return counter;
     }
 
     public static void main(String[] args) {

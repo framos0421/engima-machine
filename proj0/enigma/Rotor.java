@@ -7,10 +7,18 @@ import static enigma.EnigmaException.*;
  */
 public class Rotor {
 
+    /** My name. */
+    private final String _name;
+
+    /** The permutation implemented by this rotor in its 0 position. */
+    private Permutation _permutation;
+    private int setting;
     /** A rotor named NAME whose permutation is given by PERM. */
     public Rotor(String name, Permutation perm) {
         _name = name;
         _permutation = perm;
+        this.setting = setting;
+
         // FIXME - Assign any additional instance variables.
     }
 
@@ -46,29 +54,34 @@ public class Rotor {
 
     /** Return my current setting. */
     public int setting() {
-        return 0; // FIXME - How do we keep track of my current position?
+        return this.setting; // FIXME - How do we keep track of my current position?
     }
 
     /** Set setting() to POSN.  */
     public void set(int posn) {
+        this.setting = posn;
         // FIXME - How do we update our current position, based on an alphabet index?
     }
 
     /** Set setting() to character CPOSN. */
     public void set(char cposn) {
+        int newPosn = alphabet().toInt(cposn);
+        this.setting = newPosn;
         // FIXME - How do we update our current position, based on an alphabet character?
     }
 
     /** Return the conversion of P (an integer in the range 0..size()-1)
      *  according to my permutation. */
     public int convertForward(int p) {
-        return 0;  // FIXME - How do we permute the index P, taking into account my current position?
+        int conv = permutation().permute(permutation().wrap(p + this.setting));
+        return permutation().wrap(conv - this.setting);  // FIXME - How do we permute the index P, taking into account my current position?
     }
 
     /** Return the conversion of C (an integer in the range 0..size()-1)
      *  according to the inverse of my permutation. */
     public int convertBackward(int c) {
-        return 0;  // FIXME - How do we invert the index E, taking into account my current position?
+        int conv = permutation().invert(permutation().wrap(c + this.setting));
+        return permutation().wrap(conv - this.setting);  // FIXME - How do we invert the index E, taking into account my current position?
     }
 
     /** Returns true if and only if I am positioned to allow the rotor
@@ -86,11 +99,7 @@ public class Rotor {
         return "Rotor " + _name;
     }
 
-    /** My name. */
-    private final String _name;
 
-    /** The permutation implemented by this rotor in its 0 position. */
-    private Permutation _permutation;
 
     // FIXME - How do we keep track of what position I am in?
 

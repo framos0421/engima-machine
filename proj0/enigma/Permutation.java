@@ -33,13 +33,12 @@ public class Permutation {
          *  is interpreted as a permutation in cycle notation.  Characters in the
          *  alphabet that are not included in any cycle map to themselves.
          *  Whitespace is ignored. */
-    public Permutation(String cycles, Alphabet alphabet) {
+        /*Permutation (String cycles, Alphabet alphabet) {
             _alphabet = alphabet;
             // FIXME - Assign any additional instance variables.
         }
-
+/*
         /** Return the value of P modulo the size of this permutation. */
-        final int wrap ( int p){
             int r = p % size();
             if (r < 0) {
                 r += size();
@@ -91,8 +90,9 @@ public class Permutation {
                 // NOTE: it might be beneficial to have one permute() method always call the other
             } else {
                 return this.cycles.charAt(this.cycles.indexOf(p + 1));
-                ;  // FIXME - How do we use our instance variables to get the character that P permutes to?
+                // FIXME - How do we use our instance variables to get the character that P permutes to?
             }
+            return 3;
         }
 
 
@@ -109,17 +109,18 @@ public class Permutation {
                     return this.cycles.charAt(i - 1);
                 }
             } else {
-                return this.cycles.charAt(this.cycles.indexOf(p - 1));
+                return this.cycles.charAt(this.cycles.indexOf(c - 1));
             }
+            return 3;
         }
         // FIXME - How do we use our instance variables to get the character that C inverts to
 
         /** Return the alphabet used to initialize this Permutation. */
         public Alphabet alphabet () {
-            return _alphabet;
+            return alphabet;
         }
-    }
-    }
+
+
 
     /** Alphabet of this permutation. */
 
@@ -131,11 +132,13 @@ public class Permutation {
     // To run this through command line, from the proj0 directory, run the following:
     // javac enigma/Permutation.java enigma/Alphabet.java enigma/CharacterRange.java enigma/EnigmaException.java
     // java enigma/Permutation
-    public static void main(String[] args) {
-        Permutation perm = new Permutation("(ABCDEFGHIJKLMNOPQRSTUVWXYZ)", new CharacterRange('A', 'Z'));
-        System.out.println(perm.size() == 26);
-        System.out.println(perm.permute('A') == 'B');
-        System.out.println(perm.invert('B') == 'A');
-        System.out.println(perm.permute(0) == 1);
-        System.out.println(perm.invert(1) == 0);
-    }
+
+    //public static void main(String[] args) {
+       // Permutation perm = new Permutation("(ABCDEFGHIJKLMNOPQRSTUVWXYZ)", new CharacterRange('A', 'Z'));
+        //System.out.println(perm.size() == 26);
+        //System.out.println(perm.permute('A') == 'B');
+        //System.out.println(perm.invert('B') == 'A');
+        //System.out.println(perm.permute(0) == 1);
+        //System.out.println(perm.invert(1) == 0);
+   // }
+}

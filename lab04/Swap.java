@@ -17,7 +17,7 @@ public class Swap {
             start_index = start_index + 1;
         }
         System.out.println("Swapped " + counter + " times.");
-        return counter;
+        return counter3;
     }
 
     public static void main(String[] args) {

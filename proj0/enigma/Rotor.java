@@ -73,9 +73,8 @@ public class Rotor {
     /** Return the conversion of P (an integer in the range 0..size()-1)
      *  according to my permutation. */
     public int convertForward(int p) {
-        //int conv = permutation().permute(permutation().wrap(p + this.setting));
-        //return permutation().wrap(conv - this.setting);  // FIXME - How do we permute the index P, taking into account my current position?
-        return 0;
+        int conv = permutation().permute(permutation().wrap(p + this.setting));
+        return permutation().wrap(conv - this.setting);  // FIXME - How do we permute the index P, taking into account my current position?
     }
 
     /** Return the conversion of C (an integer in the range 0..size()-1)

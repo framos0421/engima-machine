@@ -6,6 +6,7 @@ import static enigma.EnigmaException.*;
  *  to the characters of an alphabet.
  *  @author
  */
+import java.util.ArrayList;
 public class Permutation {
     
     /**
@@ -17,6 +18,7 @@ public class Permutation {
      */
     private Alphabet alphabet;
     private String cycles;
+    //private ArrayList<Integer> permutedList;
 
     Permutation(String cycles, Alphabet alphabet) {
         this.alphabet = alphabet;
@@ -37,7 +39,7 @@ public class Permutation {
             // FIXME - Assign any additional instance variables.
 
         /** Return the value of P modulo the size of this permutation. */
-        private final int wrap(int p) {
+        final int wrap(int p) {
             int r = p % size();
             if (r < 0) {
                 r += size();
@@ -59,11 +61,12 @@ public class Permutation {
          */
         public int permute ( int p){
             // NOTE: it might be beneficial to have one permute() method always call the other
-            //int modulo = this.alphabet.wrap(p);
-            //char charAlpha = this.alphabet.charAt(this.alphabet.wrap(p));
-            return this.cycles.indexOf(permute(this.alphabet.toChar(p)));
+            char letter = this.cycles.charAt(p);
+            return this.cycles.indexOf(permute(letter));
+            }
+
             // FIXME - How do we use our instance variables to get the index that P permutes to?
-        }
+        //}
 
         /**
          * Return the index result of applying the inverse of this permutation
@@ -73,7 +76,10 @@ public class Permutation {
             // NOTE: it might be beneficial to have one invert() method always call the other
             //int modulo = this.alphabet.wrap(c);
             //char charAlpha = this.alphabet.charAt(c);
-            return this.cycles.indexOf(invert(this.alphabet.toChar(c)));  // FIXME - How do we use our instance variables to get the index that C inverts to?
+            char letter = this.cycles.charAt(c);
+            return this.cycles.indexOf(invert(letter));
+
+            // FIXME - How do we use our instance variables to get the index that C inverts to?
         }
 
         /**
@@ -84,39 +90,44 @@ public class Permutation {
             char openPar = '(';
             char closedPar = ')';
             int index = this.cycles.indexOf(p);
+            char upIndex = this.cycles.charAt(index+ 1);
             if (index == -1) {
                 return p;
-            } else if ((this.cycles.charAt(index + 1)) == closedPar) {
-                for (int i = this.cycles.indexOf(closedPar); i == this.cycles.indexOf(openPar); i--) {
-                    return this.cycles.charAt(i + 1);
+            } else if (upIndex == closedPar) {
+                int tracker = index +1;
+                while(this.cycles.charAt(tracker) != openPar){
+                    tracker--;
                 }
+                return this.cycles.charAt(tracker + 1);
                 // NOTE: it might be beneficial to have one permute() method always call the other
             } else {
-                return this.cycles.charAt(index + 1);
+                return upIndex;
                 // FIXME - How do we use our instance variables to get the character that P permutes to?
             }
-            return 3;
         }
 
 
         /** Return the character result of applying the inverse of this permutation
          * to the index of character P in ALPHABET. */
-        public char invert ( char c){
+        public char invert ( char c) {
             // NOTE: it might be beneficial to have one invert() method always call the other
             char openPar = '(';
             char closedPar = ')';
             int index = this.cycles.indexOf(c);
+            char downIndex = this.cycles.charAt(index - 1);
             if (index == -1) {
-                return 0;
-            } else if (this.cycles.charAt(index - 1) == openPar) {
-                for (int i = this.cycles.indexOf(openPar); i == this.cycles.indexOf(closedPar); i++) {
-                    return this.cycles.charAt(i - 1);
+                return c;
+            } else if (downIndex == openPar) {
+                int tracker = index - 1;
+                while (this.cycles.charAt(tracker) != closedPar) {
+                    tracker++;
                 }
+                return this.cycles.charAt(tracker - 1);
             } else {
-                return this.cycles.charAt(index - 1);
+                return downIndex;
             }
-            return 3;
         }
+
         // FIXME - How do we use our instance variables to get the character that C inverts to
 
         /** Return the alphabet used to initialize this Permutation. */
@@ -137,12 +148,12 @@ public class Permutation {
     // javac enigma/Permutation.java enigma/Alphabet.java enigma/CharacterRange.java enigma/EnigmaException.java
     // java enigma/Permutation
 
-    //public static void main(String[] args) {
-       // Permutation perm = new Permutation("(ABCDEFGHIJKLMNOPQRSTUVWXYZ)", new CharacterRange('A', 'Z'));
-        //System.out.println(perm.size() == 26);
-        //System.out.println(perm.permute('A') == 'B');
-        //System.out.println(perm.invert('B') == 'A');
-        //System.out.println(perm.permute(0) == 1);
-        //System.out.println(perm.invert(1) == 0);
-   // }
+    public static void main(String[] args) {
+        Permutation perm = new Permutation("(ABCDEFGHIJKLMNOPQRSTUVWXYZ)", new CharacterRange('A', 'Z'));
+        System.out.println(perm.size());
+        System.out.println(perm.permute('Z'));
+        System.out.println(perm.invert('A'));
+        System.out.println(perm.permute(0)== 1);
+        System.out.println(perm.invert(1) == 0);
+    }
 }

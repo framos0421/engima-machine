@@ -9,10 +9,10 @@ public class Reflector extends FixedRotor {
 
     /** A non-moving rotor named NAME whose permutation at the 0 setting
      * is PERM. */
-    public Reflector(String name, Permutation perm) {
+    Reflector(String name, Permutation perm) {
         super(name, perm);
+        }
         // FIXME? - Assign any additional instance variables.
-    }
 
     // FIXME - Just as FixedRotor inherits from Rotor, Reflector inherits
     //			from FixedRotor, meaning that it can use any methods which
@@ -28,7 +28,7 @@ public class Reflector extends FixedRotor {
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from FixedRotor
     public void set(int posn) {
-        super.set(0);
+        super.set(posn);
     }
 
     // To run this through command line, from the proj0 directory, run the following:

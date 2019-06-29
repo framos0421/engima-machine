@@ -1,17 +1,17 @@
 public class Swap {
-    int counter = 0;
+    int counter;
     int counter2 = 0;
     static int counter3 = 0; // static, is a class variable
 
     public int swap(int[] arr, int start_index) {
         while (start_index < arr.length - 1) {
-            //int counter = 0;
+            int counter = 0;
             if (arr[start_index] > arr[start_index + 1]) {
-                counter = counter + 1;
+                //counter = counter + 1;
                 int temporary = arr[start_index];
                 arr[start_index] = arr[start_index + 1];
                 arr[start_index + 1] = temporary;
-                //counter = counter + 1;
+                counter = counter + 1;
                 //counter2 = counter2 + 2;
                 //counter3 = counter3 + 1;
             }

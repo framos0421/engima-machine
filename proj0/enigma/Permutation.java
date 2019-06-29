@@ -27,7 +27,6 @@ public class Permutation {
     /**
      * Return the value of P modulo the size of this permutation.
      */
-    private final int wrap(int p) {
         /** Set this Permutation to that specified by CYCLES, a string in the
          *  form "(cccc) (cc) ..." where the c's are characters in ALPHABET, which
          *  is interpreted as a permutation in cycle notation.  Characters in the
@@ -36,9 +35,9 @@ public class Permutation {
         /*Permutation (String cycles, Alphabet alphabet) {
             _alphabet = alphabet;
             // FIXME - Assign any additional instance variables.
-        }
-/*
+
         /** Return the value of P modulo the size of this permutation. */
+        private final int wrap(int p) {
             int r = p % size();
             if (r < 0) {
                 r += size();
@@ -60,8 +59,10 @@ public class Permutation {
          */
         public int permute ( int p){
             // NOTE: it might be beneficial to have one permute() method always call the other
-            char charAlpha = this.alphabet.toChar(p);
-            return this.cycles.indexOf(permute(charAlpha));  // FIXME - How do we use our instance variables to get the index that P permutes to?
+            //int modulo = this.alphabet.wrap(p);
+            //char charAlpha = this.alphabet.charAt(this.alphabet.wrap(p));
+            return this.cycles.indexOf(permute(this.alphabet.toChar(p)));
+            // FIXME - How do we use our instance variables to get the index that P permutes to?
         }
 
         /**
@@ -70,8 +71,9 @@ public class Permutation {
          */
         public int invert ( int c){
             // NOTE: it might be beneficial to have one invert() method always call the other
-            char charAlpha = this.alphabet.toChar(c);
-            return this.cycles.indexOf(invert(charAlpha));  // FIXME - How do we use our instance variables to get the index that C inverts to?
+            //int modulo = this.alphabet.wrap(c);
+            //char charAlpha = this.alphabet.charAt(c);
+            return this.cycles.indexOf(invert(this.alphabet.toChar(c)));  // FIXME - How do we use our instance variables to get the index that C inverts to?
         }
 
         /**
@@ -81,15 +83,16 @@ public class Permutation {
         public char permute ( char p){
             char openPar = '(';
             char closedPar = ')';
-            if (this.cycles.indexOf(p) == -1) {
+            int index = this.cycles.indexOf(p);
+            if (index == -1) {
                 return p;
-            } else if ((this.cycles.charAt(this.cycles.indexOf(p) + 1)) == closedPar) {
+            } else if ((this.cycles.charAt(index + 1)) == closedPar) {
                 for (int i = this.cycles.indexOf(closedPar); i == this.cycles.indexOf(openPar); i--) {
                     return this.cycles.charAt(i + 1);
                 }
                 // NOTE: it might be beneficial to have one permute() method always call the other
             } else {
-                return this.cycles.charAt(this.cycles.indexOf(p + 1));
+                return this.cycles.charAt(index + 1);
                 // FIXME - How do we use our instance variables to get the character that P permutes to?
             }
             return 3;
@@ -102,14 +105,15 @@ public class Permutation {
             // NOTE: it might be beneficial to have one invert() method always call the other
             char openPar = '(';
             char closedPar = ')';
-            if (this.cycles.indexOf(c) == -1) {
-                return c;
-            } else if ((this.cycles.charAt(this.cycles.indexOf(c) - 1)) == openPar) {
+            int index = this.cycles.indexOf(c);
+            if (index == -1) {
+                return 0;
+            } else if (this.cycles.charAt(index - 1) == openPar) {
                 for (int i = this.cycles.indexOf(openPar); i == this.cycles.indexOf(closedPar); i++) {
                     return this.cycles.charAt(i - 1);
                 }
             } else {
-                return this.cycles.charAt(this.cycles.indexOf(c - 1));
+                return this.cycles.charAt(index - 1);
             }
             return 3;
         }

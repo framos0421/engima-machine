@@ -31,7 +31,7 @@ public class MovingRotor extends Rotor {
                     that any method which exists in Rotor can be used in MovingRotor. */
         int currentSetting = setting();
         /* Step 2b: Check if current setting is inside _notches */
-        boolean contained = _notches.contains(Integer.toString(currentSetting));
+        boolean contained = _notches.indexOf(permutation().alphabet().toChar(setting())) != -1;
         return contained;
     }
 

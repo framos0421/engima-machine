@@ -64,7 +64,7 @@ public class Permutation {
         if (inAlphabet == true) {
             return nextChar; /* Step 3e: return the next character. */
         } else {
-            while (inAlphabet == true) {
+            while (_alphabet.contains(_cycles.charAt(index)) == true) {
                 index--;
             }
             return _cycles.charAt(index + 1);
@@ -79,8 +79,8 @@ public class Permutation {
     /** Return the index result of applying this permutation to the character
      *  at index P in ALPHABET. */
     public int permute(int p) {
-        char atIndex = _cycles.charAt(p);
-        return _cycles.indexOf(permute(atIndex));
+        char atIndex = _alphabet.toChar(wrap(p));
+        return _alphabet.toInt(permute(atIndex));
     	/* Step 4: find a way to use permute(char p) to permute our input int. */
     }
 
@@ -109,7 +109,7 @@ public class Permutation {
             return prevChar;/* Step 5e: return the previous character. */
         } else {
             //while (inAlphabet == true){
-            while (_alphabet.contains(prevChar) == true){
+            while (_alphabet.contains(_cycles.charAt(index)) == true){
                 index++;
             }
             return _cycles.charAt(index - 1);/* Step 5f: Iterate index forwards until you see a ')'.
@@ -123,8 +123,8 @@ public class Permutation {
     /** Return the index result of applying the inverse of this permutation
      *  to the character at index C in ALPHABET. */
     public int invert(int c) {
-        char atIndex = _cycles.charAt(c);
-        return _cycles.indexOf(invert(atIndex));
+        char atIndex = _alphabet.toChar(wrap(c));
+        return _alphabet.toInt(invert(atIndex));
     	/* Step 6: find a way to use invert(char c) to invert our input int. */
     }
 

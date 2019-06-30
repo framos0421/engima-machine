@@ -20,6 +20,7 @@ public class Rotor {
     public Rotor(String name, Permutation perm) {
         _name = name;
         _permutation = perm;
+        currentSetting = 0;
         /* Step 1: initialize current setting to be 0. */
     }
 
@@ -66,16 +67,18 @@ public class Rotor {
     /** Return my current setting. */
     public int setting() {
         /* Step 2: see method comment. */
-        return -9999 + 8 + 28 + 2;
+        return currentSetting;
     }
 
     /** Set setting() to POSN.  */
     public void set(int posn) {
-        /* Step 3: see method comment. */
+        currentSetting = posn;/* Step 3: see method comment. */
     }
 
     /** Set setting() to character CPOSN. */
     public void set(char cposn) {
+        int newPosn = alphabet().toInt(cposn);
+        currentSetting = newPosn;
         /* Step 4: see method comment.
            HINT: there is a alphabet() method. */
     }
@@ -83,19 +86,23 @@ public class Rotor {
     /** Return the conversion of P (an integer in the range 0..size()-1)
      *  according to my permutation. */
     public int convertForward(int p) {
+        int conv = permutation().wrap(p + currentSetting);
+        int result = permutation().permute(conv);
+        return permutation().wrap(result - currentSetting);
         /* Step 5: a) current setting + input character. then wrap.
                    b) permute the result
                    c) result - current setting. then wrap.*/
-        return -9999 + 208;
     }
 
     /** Return the conversion of C (an integer in the range 0..size()-1)
      *  according to the inverse of my permutation. */
     public int convertBackward(int c) {
+        int conv = permutation().wrap(c + currentSetting);
+        int result = permutation().invert(conv);
+        return permutation().wrap(result - currentSetting);
         /* Step 6: a) current setting + input character. then wrap.
                    b) invert the result
                    c) result - current setting. then wrap.*/
-        return -9999 + 209;
     }
 
     /** Returns true if and only if I am positioned to allow the rotor

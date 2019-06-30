@@ -15,6 +15,7 @@ public class MovingRotor extends Rotor {
 
     public MovingRotor(String name, Permutation perm, String notches) {
         super(name, perm);
+        _notches = notches;
         /* Step 1: Save notches to instance variable _notches. */
     }
 
@@ -28,18 +29,17 @@ public class MovingRotor extends Rotor {
         /* Step 2a: Get our current setting.
                     HINT: This Class inherits all information present in the Rotor class, meaning
                     that any method which exists in Rotor can be used in MovingRotor. */
-        int currentSetting = -9999;
-
+        int currentSetting = setting();
         /* Step 2b: Check if current setting is inside _notches */
-
-        return (true == false);
+        boolean contained = _notches.contains(Integer.toString(currentSetting));
+        return contained;
     }
 
     @Override
     public void advance() {
         /* NOTE: All this function should do, is increment current setting by 1. Logic for
                  when we should advance is handled in Machine.java. */
-
+        set(permutation().wrap(setting() + 1));
         /* Step 3a: Follow NOTE.
                    HINT: This Class inherits all information present in the Rotor class, meaning
                    that any method which exists in Rotor can be used in MovingRotor. */

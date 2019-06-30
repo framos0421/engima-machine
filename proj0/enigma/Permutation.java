@@ -20,7 +20,7 @@ public class Permutation {
     private String cycles;
     //private ArrayList<Integer> permutedList;
 
-    Permutation(String cycles, Alphabet alphabet) {
+    public Permutation(String cycles, Alphabet alphabet) {
         this.alphabet = alphabet;
         this.cycles = cycles;
         // FIXME - Assign any additional instance variables.

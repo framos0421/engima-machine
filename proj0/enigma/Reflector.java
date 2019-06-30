@@ -23,12 +23,14 @@ public class Reflector extends FixedRotor {
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from FixedRotor
     public boolean reflecting() {
-        return false; // FIXME? - How do we know whether this Rotor should reflect?
+        return true; // FIXME? - How do we know whether this Rotor should reflect?
     }
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from FixedRotor
     public void set(int posn) {
-        super.set(posn);
+        if (posn !=0){
+            throw error ("reflector has only one position");
+        }
     }
 
     // To run this through command line, from the proj0 directory, run the following:

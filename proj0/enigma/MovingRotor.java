@@ -5,7 +5,9 @@ import static enigma.EnigmaException.*;
 /** Class that represents a rotating rotor in the enigma machine.
  *  @author
  */
+
 public class MovingRotor extends Rotor {
+    private String listNotches;
 
     /** A rotor named NAME whose permutation in its default setting is
      *  PERM, and whose notches are at the positions indicated in NOTCHES.
@@ -14,6 +16,8 @@ public class MovingRotor extends Rotor {
      */
     public MovingRotor(String name, Permutation perm, String notches) {
         super(name, perm);
+        listNotches = notches;
+
         // FIXME - Assign any additional instance variables.
     }
 
@@ -30,16 +34,18 @@ public class MovingRotor extends Rotor {
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from Rotor
     public boolean rotates() {
-        return false; // FIXME - How do we know whether this Rotor should rotate?
+        return true; // FIXME - How do we know whether this Rotor should rotate?
     }
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from Rotor
     public boolean atNotch() {
-        return false; // FIXME - How do we know whether this Rotor is at a notch?
+        return listNotches.indexOf(permutation().alphabet().toChar(setting())) != 1;
+        // FIXME - How do we know whether this Rotor is at a notch?
     }
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from Rotor
     public void advance() {
+        set(permutation().wrap(setting() + 1));
         // FIXME - What methods can we use to advance this Rotor by one position?
     }
 

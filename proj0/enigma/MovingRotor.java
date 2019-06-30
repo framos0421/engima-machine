@@ -5,53 +5,47 @@ import static enigma.EnigmaException.*;
 /** Class that represents a rotating rotor in the enigma machine.
  *  @author
  */
-
 public class MovingRotor extends Rotor {
-    private String listNotches;
-
     /** A rotor named NAME whose permutation in its default setting is
      *  PERM, and whose notches are at the positions indicated in NOTCHES.
      *  The Rotor is initially in its 0 setting (first character of its
      *  alphabet).
      */
+    private String _notches;
+
     public MovingRotor(String name, Permutation perm, String notches) {
         super(name, perm);
-        listNotches = notches;
-
-        // FIXME - Assign any additional instance variables.
+        /* Step 1: Save notches to instance variable _notches. */
     }
 
-    // FIXME - This class inherits all of the information present in the
-    //			Rotor class, meaning that any method which exists in
-    //			Rotor can be used from MovingRotor. This will make more sense
-    //			later in the course, but for now, you should think about
-    //			how a MovingRotor's behavior is different from a FixedRotor.
-    //			Does a MovingRotor's behavior differ from the default Rotor
-    //			behavior? Some methods that differ appear below. Do we need
-    //			to update any other methods in this class in order for it to
-    //			behave as a moving Rotor? Check out Rotor and FixedRotor to
-    //			see what methods might be different between these two classes.
-
-    @Override // Use this special tag when updating the behavior of a method this class inherits from Rotor
+    @Override
     public boolean rotates() {
-        return true; // FIXME - How do we know whether this Rotor should rotate?
+        return true;
     }
 
-    @Override // Use this special tag when updating the behavior of a method this class inherits from Rotor
+    @Override
     public boolean atNotch() {
-        return listNotches.indexOf(permutation().alphabet().toChar(setting())) != 1;
-        // FIXME - How do we know whether this Rotor is at a notch?
+        /* Step 2a: Get our current setting.
+                    HINT: This Class inherits all information present in the Rotor class, meaning
+                    that any method which exists in Rotor can be used in MovingRotor. */
+        int currentSetting = -9999;
+
+        /* Step 2b: Check if current setting is inside _notches */
+
+        return (true == false);
     }
 
-    @Override // Use this special tag when updating the behavior of a method this class inherits from Rotor
+    @Override
     public void advance() {
-        set(permutation().wrap(setting() + 1));
-        // FIXME - What methods can we use to advance this Rotor by one position?
+        /* NOTE: All this function should do, is increment current setting by 1. Logic for
+                 when we should advance is handled in Machine.java. */
+
+        /* Step 3a: Follow NOTE.
+                   HINT: This Class inherits all information present in the Rotor class, meaning
+                   that any method which exists in Rotor can be used in MovingRotor. */
+
+        /* Step 3b: Don't forget to wrap before you set. */
     }
-
-    // FIXME - How do we keep track of my notches?
-
-    // FIXME: ADDITIONAL FIELDS HERE, AS NEEDED
 
     // To run this through command line, from the proj0 directory, run the following:
     // javac enigma/Rotor.java enigma/MovingRotor.java enigma/Permutation.java enigma/Alphabet.java enigma/CharacterRange.java enigma/EnigmaException.java

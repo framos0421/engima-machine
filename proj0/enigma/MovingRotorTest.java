@@ -10,7 +10,7 @@ import java.util.HashMap;
 import static enigma.TestUtils.*;
 
 /** The suite of all JUnit tests for the Permutation class.
- *  @author
+ *  @author Jackson Leisure
  */
 public class MovingRotorTest {
 
@@ -53,23 +53,48 @@ public class MovingRotorTest {
 
     @Test
     public void checkRotorAtA() {
-        setRotor("I", NAVALA, ""); // Consider trying Rotors besides Rotor I
+        setRotor("I", NAVALA, "");
         checkRotor("Rotor I (A)", UPPER_STRING, NAVALA_MAP.get("I"));
     }
 
     @Test
     public void checkRotorAdvance() {
-        setRotor("I", NAVALA, ""); // Consider trying Rotors besides Rotor I
+        setRotor("I", NAVALA, "");
         rotor.advance();
         checkRotor("Rotor I advanced", UPPER_STRING, NAVALB_MAP.get("I"));
     }
 
     @Test
     public void checkRotorSet() {
-        setRotor("I", NAVALA, ""); // Consider trying Rotors besides Rotor I
+        setRotor("I", NAVALA, "");
         rotor.set(25);
         checkRotor("Rotor I set", UPPER_STRING, NAVALZ_MAP.get("I"));
     }
 
-    // FIXME Additional Tests
+    @Test
+    public void navalA() {
+        for (String key : NAVALA_MAP.keySet()) {
+            setRotor(key, NAVALA, "");
+            checkRotor("Rotor I (A)", UPPER_STRING, NAVALA_MAP.get(key));
+        }
+    }
+
+    @Test
+    public void navalB() {
+        for (String key : NAVALA_MAP.keySet()) {
+            setRotor(key, NAVALA, "");
+            rotor.advance();
+            checkRotor("Rotor I (A)", UPPER_STRING, NAVALB_MAP.get(key));
+        }
+    }
+
+    @Test
+    public void navalZ() {
+        for (String key : NAVALA_MAP.keySet()) {
+            setRotor(key, NAVALA, "");
+            rotor.set(25);
+            checkRotor("Rotor I (A)", UPPER_STRING, NAVALZ_MAP.get(key));
+        }
+    }
+
 }

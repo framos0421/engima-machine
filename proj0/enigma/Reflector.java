@@ -7,30 +7,22 @@ import static enigma.EnigmaException.*;
  */
 public class Reflector extends FixedRotor {
 
+    /* Step 1: DO NOT DO ANYTHING HERE. */
+
     /** A non-moving rotor named NAME whose permutation at the 0 setting
      * is PERM. */
     public Reflector(String name, Permutation perm) {
         super(name, perm);
-        }
-        // FIXME? - Assign any additional instance variables.
-
-    // FIXME - Just as FixedRotor inherits from Rotor, Reflector inherits
-    //			from FixedRotor, meaning that it can use any methods which
-    //			exist in FixedRotor. Since FixedRotor inherits from Rotor,
-    //			Reflector can use any methods from Rotor, as well. Given
-    //			this, are there any methods that we should override and
-    //			update in order to express that this is a Reflector?
+    }
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from FixedRotor
     public boolean reflecting() {
-        return true; // FIXME? - How do we know whether this Rotor should reflect?
+        return true;
     }
 
     @Override // Use this special tag when updating the behavior of a method this class inherits from FixedRotor
     public void set(int posn) {
-        if (posn !=0){
-            throw error ("reflector has only one position");
-        }
+        super.set(0);
     }
 
     // To run this through command line, from the proj0 directory, run the following:

@@ -3,12 +3,13 @@ package enigma;
 import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
+
 import static org.junit.Assert.*;
 
 import static enigma.TestUtils.*;
 
 /** The suite of all JUnit tests for the Permutation class.
- *  @author
+ *  @author Jackson Leisure
  */
 public class PermutationTest {
 
@@ -23,7 +24,7 @@ public class PermutationTest {
 
     /** Check that perm has an alphabet whose size is that of
      *  FROMALPHA and TOALPHA and that maps each character of
-     *  FROMALPHA to the corresponding character of FROMALPHA, and
+     *  FROMALPHA to the corresponding character of TOALPHA, and
      *  vice-versa. TESTID is used in error messages. */
     private void checkPerm(String testId,
                            String fromAlpha, String toAlpha) {
@@ -53,24 +54,44 @@ public class PermutationTest {
 
     @Test
     public void checkForwardTransform() {
-    	// permutation which maps each character forward by one (e.g. A->B, Z->A)
-        perm = new Permutation("(ABCDEFGHIJKLMNOPQRSTUVWXYZ)", UPPER); // FIXME - what string represents the Permutation for the above description?
-        checkPerm("forward", UPPER_STRING, "BCDEFGHIJKLMNOPQRSTUVWXYZA"); // FIXME - what string represents the result of permuting each letter?
+        perm = new Permutation("(ABCDEFGHIJKLMNOPQRSTUVWXYZ)", UPPER);
+        checkPerm("forward", UPPER_STRING, UPPER_STRING.substring(1) + "A");
     }
 
     @Test
     public void checkBackwardTransform() {
-    	// permutation which maps each character backward by one (e.g. B->A, A->Z)
-        perm = new Permutation("(ABCDEFGHIJKLMNOPQRSTUVWXYZ)", UPPER); // FIXME - what string represents the Permutation for the above description?
-        checkPerm("backward", UPPER_STRING, "ZABCDEFGHIJKLMNOPQRSTUVWXY"); // FIXME - what string represents the result of permuting each letter?
+        perm = new Permutation("(ZYXWVUTSRQPONMLKJIHGFEDCBA)", UPPER);
+        checkPerm("backward", UPPER_STRING, "Z" + UPPER_STRING.substring(0, 25));
     }
 
     @Test
     public void checkNavalPermutation() {
-    	perm = new Permutation(NAVALA.get("I"), UPPER); // Consider trying Rotors besides Rotor I
-    	checkPerm("naval A: I", UPPER_STRING, NAVALA_MAP.get("I"));
+        perm = new Permutation(NAVALA.get("I"), UPPER);
+        checkPerm("naval A: I", UPPER_STRING, NAVALA_MAP.get("I"));
     }
 
-    // FIXME Additional Tests
+    @Test
+    public void navalA() {
+        for (String key : NAVALA_MAP.keySet()) {
+            perm = new Permutation(NAVALA.get(key), UPPER);
+            checkPerm("naval A: " + key, UPPER_STRING, NAVALA_MAP.get(key));
+        }
+    }
+
+    @Test
+    public void navalB() {
+        for (String key : NAVALB_MAP.keySet()) {
+            perm = new Permutation(NAVALB.get(key), UPPER);
+            checkPerm("naval B: " + key, UPPER_STRING, NAVALB_MAP.get(key));
+        }
+    }
+
+    @Test
+    public void navalZ() {
+        for (String key : NAVALZ_MAP.keySet()) {
+            perm = new Permutation(NAVALZ.get(key), UPPER);
+            checkPerm("naval Z: " + key, UPPER_STRING, NAVALZ_MAP.get(key));
+        }
+    }
 
 }

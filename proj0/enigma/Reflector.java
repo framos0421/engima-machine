@@ -9,7 +9,7 @@ public class Reflector extends FixedRotor {
 
     /** A non-moving rotor named NAME whose permutation at the 0 setting
      * is PERM. */
-    Reflector(String name, Permutation perm) {
+    public Reflector(String name, Permutation perm) {
         super(name, perm);
         }
         // FIXME? - Assign any additional instance variables.

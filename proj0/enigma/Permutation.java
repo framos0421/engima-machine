@@ -6,7 +6,6 @@ import static enigma.EnigmaException.*;
  *  to the characters of an alphabet.
  *  @author
  */
-import java.util.ArrayList;
 public class Permutation {
     
     /**

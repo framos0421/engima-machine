@@ -1,5 +1,8 @@
 package enigma;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import static enigma.EnigmaException.*;
 
 /** Class that represents a complete enigma machine.
@@ -7,29 +10,61 @@ import static enigma.EnigmaException.*;
  */
 public class Machine {
 
+    /** Common alphabet of my rotors. */
+    private final Alphabet alphabet;
+    private int numRotors;
+    private int pawls;
+    private Permutation plugboard;
+    private ArrayList<Rotor> rotorList;
+    private Rotor [] allRotors;
+
+
     /** A new Enigma machine with alphabet ALPHA, 1 < NUMROTORS rotor slots,
      *  and 0 <= PAWLS < NUMROTORS pawls. ALLROTORS contains all the
      *  available rotors. */
     public Machine(Alphabet alpha, int numRotors, int pawls,
             Rotor[] allRotors) {
-        _alphabet = alpha;
+        this.alphabet = alpha;
+        this.numRotors = numRotors;
+        this.pawls = pawls;
+        allRotors = new Rotor[allRotors.size()];
+        int i = 0;
+        for (Rotor r: allRotors) {
+            allRotors[i] = r;
+            i++;
+        }
+
         // FIXME - Assign any additional instance variables.
     }
 
     /** Return the number of rotor slots I have. */
     public int numRotors() {
-        return 0; // FIXME - How do we access the number of Rotor slots I have?
+        return this.numRotors;
+        // FIXME - How do we access the number of Rotor slots I have?
     }
 
     /** Return the number pawls (and thus rotating rotors) I have. */
     public int numPawls() {
-        return 0; // FIXME - How do we access the number of pawls I have?
+        return this.pawls; // FIXME - How do we access the number of pawls I have?
     }
 
     /** Set my rotor slots to the rotors named ROTORS from my set of
      *  available rotors (ROTORS[0] names the reflector).
      *  Initially, all rotors are set at their 0 setting. */
     public void insertRotors(String[] rotors) {
+        rotorList = new ArrayList<>();
+        ArrayList<String> rotorNames = new ArrayList<>();
+        for (String a: rotors){
+            for (Rotor b: allRotors){
+                if (a.equals(b.name())) {
+                    b.set(0);
+                    rotorList.add(b);
+                    if (rotorNames.contains(a)){
+                        
+                    }
+                }
+            }
+        }
         // FIXME - How do we fill this Machine with Rotors, based on names of available Rotors?
     }
 
@@ -68,8 +103,6 @@ public class Machine {
         return ""; // FIXME - How do we convert an entire String?
     }
 
-    /** Common alphabet of my rotors. */
-    private final Alphabet _alphabet;
 
     // FIXME - How do we keep track of my available Rotors/my Rotors/my pawls/my plugboard
 

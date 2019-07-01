@@ -10,7 +10,9 @@ import static enigma.EnigmaException.*;
  */
 public class Machine {
 
-    /** Common alphabet of my rotors. */
+    /**
+     * Common alphabet of my rotors.
+     */
     private final Alphabet _alphabet;
     int _numRotors;
     int _pawls;
@@ -19,11 +21,13 @@ public class Machine {
 
     private Rotor[] _myRotors; // An array to store rotors belonging to this Machine
 
-    /** A new Enigma machine with alphabet ALPHA, 1 < NUMROTORS rotor slots,
-     *  and 0 <= PAWLS < NUMROTORS pawls. ALLROTORS contains all the
-     *  available rotors. */
+    /**
+     * A new Enigma machine with alphabet ALPHA, 1 < NUMROTORS rotor slots,
+     * and 0 <= PAWLS < NUMROTORS pawls. ALLROTORS contains all the
+     * available rotors.
+     */
     public Machine(Alphabet alpha, int numRotors, int pawls,
-            Rotor[] allRotors) {
+                   Rotor[] allRotors) {
         _alphabet = alpha;
         _numRotors = numRotors;
         _pawls = pawls;
@@ -37,21 +41,27 @@ public class Machine {
         /* Step 1b: initialize myRotors to hold the correct number of rotors. */
     }
 
-    /** Return the number of rotor slots I have. */
+    /**
+     * Return the number of rotor slots I have.
+     */
     public int numRotors() {
         /* Step 2: Did you save this number from before? */
         return _numRotors;
     }
 
-    /** Return the number pawls (and thus rotating rotors) I have. */
+    /**
+     * Return the number pawls (and thus rotating rotors) I have.
+     */
     public int numPawls() {
         /* Step 3: Did you save this number from before? */
         return _pawls;
     }
 
-    /** Set my rotor slots to the rotors named ROTORS from my set of
-     *  available rotors (ROTORS[0] names the reflector).
-     *  Initially, all rotors are set at their 0 setting. */
+    /**
+     * Set my rotor slots to the rotors named ROTORS from my set of
+     * available rotors (ROTORS[0] names the reflector).
+     * Initially, all rotors are set at their 0 setting.
+     */
     public void insertRotors(String[] rotors) {
         int counter = 0;
         for (String a : rotors) {
@@ -74,13 +84,24 @@ public class Machine {
            NOTE: To check equality between Strings, you must use
                  .equals() between the two. "==" will not work. */
 
-    /** Set my rotors according to SETTING, which must be a string of
-     *  numRotors()-1 upper-case letters. The first letter refers to the
-     *  leftmost rotor setting (not counting the reflector).  */
+    /**
+     * Set my rotors according to SETTING, which must be a string of
+     * numRotors()-1 upper-case letters. The first letter refers to the
+     * leftmost rotor setting (not counting the reflector).
+     */
     public void setRotors(String setting) {
+        //Rotor lastIndex = _myRotors[-1];
+        //int length = _myRotors.length;
+        if (setting.length() == (numRotors() - 1)) {
+            for (int i = 1; i < _myRotors.length; i++) {
+                _myRotors[i].set(_alphabet.toInt(setting.charAt(i -1)));
+
         /* Step 5: iterate from myRotors[1] to myRotors[end], use setting
                    to determine what position they should be at. */
-    }
+                    }
+
+                }
+            }
 
     /** Set the plugboard to PLUGBOARD. */
     public void setPlugboard(Permutation plugboard) {
@@ -108,6 +129,22 @@ public class Machine {
 
     /** Helper method for convert() which rotates the necessary Rotors. */
     private void advance() {
+        ArrayList<Rotor> moving = new ArrayList<>();
+        for (int i = numRotors() - numPawls(); i < numRotors(); i++) {
+            Rotor currentRotor = _myRotors[i];
+            if (i == (numRotors() - 1)) {
+                moving.add(currentRotor);
+            } else if (_myRotors[i + 1].atNotch() || moving.contains(_myRotors[i - 1])) {
+                if (!moving.contains(currentRotor)) {
+                    moving.add(currentRotor);
+                }
+                if (_myRotors[i].atNotch()) {
+                    if (!moving.contains(_myRotors[i - 1])) {
+                        moving.add(_myRotors[i - 1]);
+                    }
+                }
+            }
+        }
     	/* Step 8a: make boolean array, one element per rotor. */
         /* Step 8b: iterate through every rotor, starting from myRotors[1]. */
         /* Step 8c: if rotor i is at a notch, mark rotor i and i-1 to true

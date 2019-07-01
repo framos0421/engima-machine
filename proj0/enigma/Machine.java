@@ -114,12 +114,27 @@ public class Machine {
      *  the machine. */
     public int convert(int c) {
         advance();
+        c = c % _alphabet.size();
+        if (_plugboard != null) {
+            c = _plugboard.permute(c);
+        }
+        for (int i = _myRotors.length - 1; i >= 0; i--){
+            Rotor forwardRotor = _myRotors[i];
+            c = forwardRotor.convertForward(c);
+        }
+        for (int n = 1; n < _myRotors.length; n++){
+            Rotor backwardRotor = _myRotors[n];
+            c = backwardRotor.convertBackward(c);
+        }
+        if (_plugboard != null){
+            c = _plugboard.permute(c);
+        }return c;
     	/* Step 7a: always advance() first */
-        _plugboard.permute(c);
+        //_plugboard.permute(c);
         /* Step 7b: permute the character with the plugboard. */
-        for(int i = _myRotors.length - 1; i >= 0; i--){
+        //for(int i = _myRotors.length - 1; i >= 0; i--){
             //Rotor forwardRotor = _myRotors.get(i);
-        }return 0;
+        //}return 0;
         /* Step 7c: from myRotors[end] to myRotors[1] convertForward */
         /* Step 7d: convertForward on the reflector. Remember the reflector
                     is myRotors[0]. */
@@ -145,13 +160,16 @@ public class Machine {
                 }
             }
         }
+        for (Rotor r : moving) {
+            r.advance();
+        }
+    }
     	/* Step 8a: make boolean array, one element per rotor. */
         /* Step 8b: iterate through every rotor, starting from myRotors[1]. */
         /* Step 8c: if rotor i is at a notch, mark rotor i and i-1 to true
                     in boolean array. */
         /* Step 8d: mark myRotors[end] as true. */
         /* Step 8d: rotate all rotors who are marked true in the boolean array. */
-    }
 
     /** Returns the encoding/decoding of MSG, updating the state of
      *  the rotors accordingly. */

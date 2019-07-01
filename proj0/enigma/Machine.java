@@ -90,8 +90,6 @@ public class Machine {
      * leftmost rotor setting (not counting the reflector).
      */
     public void setRotors(String setting) {
-        //Rotor lastIndex = _myRotors[-1];
-        //int length = _myRotors.length;
         if (setting.length() == (numRotors() - 1)) {
             for (int i = 1; i < _myRotors.length; i++) {
                 _myRotors[i].set(_alphabet.toInt(setting.charAt(i -1)));
@@ -130,11 +128,7 @@ public class Machine {
             c = _plugboard.permute(c);
         }return c;
     	/* Step 7a: always advance() first */
-        //_plugboard.permute(c);
         /* Step 7b: permute the character with the plugboard. */
-        //for(int i = _myRotors.length - 1; i >= 0; i--){
-            //Rotor forwardRotor = _myRotors.get(i);
-        //}return 0;
         /* Step 7c: from myRotors[end] to myRotors[1] convertForward */
         /* Step 7d: convertForward on the reflector. Remember the reflector
                     is myRotors[0]. */

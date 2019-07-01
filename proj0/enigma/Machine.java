@@ -1,6 +1,9 @@
 package enigma;
 
+import java.util.*;
 import static enigma.EnigmaException.*;
+
+
 
 /** Class that represents a complete enigma machine.
  *  @author
@@ -9,8 +12,12 @@ public class Machine {
 
     /** Common alphabet of my rotors. */
     private final Alphabet _alphabet;
+    int _numRotors;
+    int _pawls;
+    Rotor[] _allRotors;
+    private Permutation _plugboard;
 
-    private Rotor[] myRotors; // An array to store rotors belonging to this Machine
+    private Rotor[] _myRotors; // An array to store rotors belonging to this Machine
 
     /** A new Enigma machine with alphabet ALPHA, 1 < NUMROTORS rotor slots,
      *  and 0 <= PAWLS < NUMROTORS pawls. ALLROTORS contains all the
@@ -18,6 +25,10 @@ public class Machine {
     public Machine(Alphabet alpha, int numRotors, int pawls,
             Rotor[] allRotors) {
         _alphabet = alpha;
+        _numRotors = numRotors;
+        _pawls = pawls;
+        _allRotors = allRotors;
+        _myRotors = new Rotor[numRotors];
 
         /* Step 1a: Define instance variables and initialize all of them.
                    HINT: you probably want to save all fields passed into
@@ -29,19 +40,30 @@ public class Machine {
     /** Return the number of rotor slots I have. */
     public int numRotors() {
         /* Step 2: Did you save this number from before? */
-        return -9999 + 88888;
+        return _numRotors;
     }
 
     /** Return the number pawls (and thus rotating rotors) I have. */
     public int numPawls() {
         /* Step 3: Did you save this number from before? */
-        return -9999 + 3232;
+        return _pawls;
     }
 
     /** Set my rotor slots to the rotors named ROTORS from my set of
      *  available rotors (ROTORS[0] names the reflector).
      *  Initially, all rotors are set at their 0 setting. */
     public void insertRotors(String[] rotors) {
+        int counter = 0;
+        for (String a : rotors) {
+            for (Rotor b : _allRotors) {
+                if (a.toUpperCase().equals(b.name().toUpperCase())) {
+                    _myRotors[counter] = b;
+                    counter++;
+                }
+            }
+        }
+    }
+
         /* Step 4: For each rotor name in rotors, find the Rotor in allRotors
                    whose name is equal to the rotor name and insert it into
                    myRotors. */
@@ -51,7 +73,6 @@ public class Machine {
 
            NOTE: To check equality between Strings, you must use
                  .equals() between the two. "==" will not work. */
-    }
 
     /** Set my rotors according to SETTING, which must be a string of
      *  numRotors()-1 upper-case letters. The first letter refers to the
@@ -63,6 +84,7 @@ public class Machine {
 
     /** Set the plugboard to PLUGBOARD. */
     public void setPlugboard(Permutation plugboard) {
+        _plugboard = plugboard;
         /* Step 6: create a _plugboard instance variable and save plugboard there */
     }
 
@@ -70,14 +92,18 @@ public class Machine {
      *  index in the range 0..alphabet size - 1), after first advancing
      *  the machine. */
     public int convert(int c) {
+        advance();
     	/* Step 7a: always advance() first */
+        _plugboard.permute(c);
         /* Step 7b: permute the character with the plugboard. */
+        for(int i = _myRotors.length - 1; i >= 0; i--){
+            //Rotor forwardRotor = _myRotors.get(i);
+        }return 0;
         /* Step 7c: from myRotors[end] to myRotors[1] convertForward */
         /* Step 7d: convertForward on the reflector. Remember the reflector
                     is myRotors[0]. */
         /* Step 7e: from myRotors[1] to myRotors[end] convertBackward */
         /* Step 7f: invert character with the plugboard. */
-        return 72553;
     }
 
     /** Helper method for convert() which rotates the necessary Rotors. */
@@ -93,6 +119,11 @@ public class Machine {
     /** Returns the encoding/decoding of MSG, updating the state of
      *  the rotors accordingly. */
     public String convert(String msg) {
+        String newMsg = msg.toUpperCase();
+        String output = "";
+        for(int i = 0; i < newMsg.length(); i++){
+            output += _alphabet.toChar(convert(_alphabet.toInt(newMsg.charAt(i))));
+        }
     	/* Step 9a: Capitalize msg and save it to a variable. */
         /* Step 9b: Create an empty string, called output. */
         /* Step 9c: For each character in the capitalized msg, convert the
@@ -102,7 +133,7 @@ public class Machine {
                           int's and char's as necessary.*/
         /* Step 9d: Return the output. */
         
-        return "Pickles are gross!";
+        return output;
     }
 
 

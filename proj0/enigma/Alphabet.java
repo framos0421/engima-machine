@@ -1,4 +1,5 @@
 package enigma;
+import java.util.*;
 
 /** An alphabet of encodable characters.  Provides a mapping from characters
  *  to and from indices into the alphabet.

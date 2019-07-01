@@ -1,4 +1,5 @@
 package enigma;
+import java.util.*;
 
 import static enigma.EnigmaException.*;
 

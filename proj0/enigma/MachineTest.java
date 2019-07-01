@@ -6,6 +6,8 @@ import org.junit.Test;
 import org.junit.Rule;
 import org.junit.rules.Timeout;
 import static org.junit.Assert.*;
+import java.util.*;
+
 
 /** The suite of all JUnit tests for the Machine class.
  *  @author
